@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'monthly-report-intern';
+  darkMode:Boolean = false;
 
+  setDarkMode(dark: Boolean) {
+    this.darkMode = dark
+  }
   constructor(public router:Router){
 
   }
