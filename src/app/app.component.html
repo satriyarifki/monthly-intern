@@ -1,5 +1,8 @@
-<div [ngClass]="{'dark': darkMode}">
-  <app-sidebar *ngIf="!router.url.includes('login')" (setDarkMode)="setDarkMode($event)"></app-sidebar>
-<router-outlet></router-outlet>
+<div [ngClass]="{ 'dark bg-sky-900': darkMode }" class="h-screen">
+  <app-sidebar
+    *ngIf="!router.url.includes('login')"
+    [darkMode]="darkMode"
+    (setDarkMode)="setDarkMode($event)"
+  ></app-sidebar>
+  <router-outlet></router-outlet>
 </div>
-

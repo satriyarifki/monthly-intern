@@ -14,4 +14,10 @@ export class MainService {
   getProjects(): Observable<any> {
     return this.http.get(this.baseUrl + 'projects');
   }
+  getProjectsById(id:any): Observable<any> {
+    return this.http.get(this.baseUrl + 'projects/'+id);
+  }
+  getUsers(): Observable<any> {
+    return this.http.get(this.baseUrl + 'users');
+  }
 }

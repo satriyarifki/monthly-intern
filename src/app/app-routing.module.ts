@@ -4,15 +4,26 @@ import { AuthComponent } from './auth/auth.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { onAuthGuard } from './services/guard/on-auth.guard';
 import { outAuthGuard } from './services/guard/out-auth.guard';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
-  {path: '', component: ProjectsComponent, canActivate: [onAuthGuard]},
-  {path: 'login', component:AuthComponent, }
-
+  { path: '', component: ProjectsComponent, canActivate: [onAuthGuard] },
+  { path: 'login', component: AuthComponent, canActivate: [outAuthGuard] },
+  {
+    path: 'details/:id',
+    component: ProjectDetailsComponent,
+    canActivate: [onAuthGuard],
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [onAuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

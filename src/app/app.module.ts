@@ -11,6 +11,7 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     SidebarComponent,
     DashboardComponent,
     ProjectsComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

@@ -8,12 +8,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'monthly-report-intern';
-  darkMode:Boolean = false;
+  darkMode: Boolean = false;
 
   setDarkMode(dark: Boolean) {
-    this.darkMode = dark
+    // this.darkMode = dark
+    if (localStorage.getItem('theme') == '') {
+      this.darkMode = false
+    } else {
+      this.darkMode = true
+    }
   }
-  constructor(public router:Router){
-
+  constructor(public router: Router) {
+    this.setDarkMode(true);
   }
 }

@@ -1,0 +1,83 @@
+<div class="lg:ml-64 px-5 py-10 space-y-4 dark:text-white">
+  <div class="flex justify-between">
+    <h1 class="font-semibold text-2xl">User List</h1>
+    <div>
+      <button
+        (click)="changeDropdown()"
+        class="hover:text-gray-800 dark:hover:text-gray-300 transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="32px"
+          viewBox="0 0 24 24"
+          width="32px"
+          fill="currentColor"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+          />
+        </svg>
+      </button>
+      <div
+        [ngClass]="{ hidden: !createDropdown }"
+        class="absolute transition-all right-5 w-40 z-20 py-2 origin-top-right bg-white border rounded-md shadow-xl dark:bg-gray-800"
+      >
+        <button
+          class="w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+        >
+          From AIO login
+        </button>
+        <button
+          class="w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+        >
+          New User
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md"
+  >
+    <table
+      class="w-full border-collapse bg-white text-sm text-gray-500 text-center"
+    >
+      <thead class="bg-gray-50 dark:bg-slate-800">
+        <tr class="text-gray-900 dark:text-white">
+          <th scope="col" class="px-6 py-4 font-medium">NIK</th>
+          <th scope="col" class="px-6 py-4 font-medium">Name</th>
+          <th scope="col" class="px-6 py-4 font-medium">Password</th>
+          <th scope="col" class="px-6 py-4 font-medium">Role</th>
+          <th scope="col" class="px-6 py-4 font-medium">Status</th>
+          <th scope="col" class="px-6 py-4 font-medium">Action</th>
+        </tr>
+      </thead>
+      <tbody
+        class="divide-y dark:bg-slate-700 dark:text-white divide-gray-100 border-t border-gray-100 dark:border-gray-600 dark:divide-gray-600"
+      >
+        <tr
+          [routerLink]="['details/' + item.id]"
+          *ngFor="let item of usersApi"
+          class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <th class="px-6 py-4 font-medium">
+            {{ item.lg_nik }}
+          </th>
+          <td class="px-6 py-4">{{ item.lg_name }}</td>
+          <td class="px-6 py-4">{{ item.lg_password }}</td>
+          <td class="px-6 py-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-700 px-2 py-1 text-sm font-semibold text-green-600 dark:text-green-100"
+            >
+              {{ item.roleId }}
+            </span>
+          </td>
+          <td class="px-6 py-4">{{ item.status }}</td>
+          <td class="flex justify-center h-full gap-4 px-6 py-4 font-medium">
+            <a class="">Delete</a><a href="" class="text-primary-700">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

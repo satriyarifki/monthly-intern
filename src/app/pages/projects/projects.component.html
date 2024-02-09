@@ -1,40 +1,39 @@
-<div class="lg:ml-64 px-5 py-10 space-y-4">
+<div class="lg:ml-64 px-5 py-10 space-y-4 dark:text-white">
   <div>
     <h1 class="font-semibold text-2xl">Project List</h1>
   </div>
-  <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+  <div
+    class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md"
+  >
     <table
-      class="w-full border-collapse bg-white text-left text-sm text-gray-500 text-center"
+      class="w-full border-collapse bg-white text-sm text-gray-500 text-center"
     >
-      <thead class="bg-gray-50">
-        <tr>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">User</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-            Department
-          </th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-            App Name
-          </th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-            Progres
-          </th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-            Action
-          </th>
+      <thead class="bg-gray-50 dark:bg-slate-800">
+        <tr class="text-gray-900 dark:text-white">
+          <th scope="col" class="px-6 py-4 font-medium">User</th>
+          <th scope="col" class="px-6 py-4 font-medium">Department</th>
+          <th scope="col" class="px-6 py-4 font-medium">App Name</th>
+          <th scope="col" class="px-6 py-4 font-medium">Progres</th>
+          <th scope="col" class="px-6 py-4 font-medium">Action</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-        <tr *ngFor="let item of projectsApi" class="hover:bg-gray-50">
-          <th class="px-6 py-4 font-medium text-gray-900">
+      <tbody
+        class="divide-y dark:bg-slate-700 dark:text-white divide-gray-100 border-t border-gray-100 dark:border-gray-600 dark:divide-gray-600"
+      >
+        <tr
+          [routerLink]="['details/' + item.id]"
+          *ngFor="let item of projectsApi"
+          class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <th class="px-6 py-4 font-medium">
             {{ item.users_role.nik }}
           </th>
           <td class="px-6 py-4">{{ item.department.department_name }}</td>
           <td class="px-6 py-4">{{ item.appName }}</td>
           <td class="px-6 py-4">
             <span
-              class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-sm font-semibold text-green-600"
+              class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-700 px-2 py-1 text-sm font-semibold text-green-600 dark:text-green-100"
             >
-
               {{ item.progress }}%
             </span>
           </td>
