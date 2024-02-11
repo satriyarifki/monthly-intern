@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UsersComponent } from './pages/users/users.component';
+import { ProjectCreateComponent } from './pages/projects/project-create/project-create.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UsersComponent } from './pages/users/users.component';
     DashboardComponent,
     ProjectsComponent,
     ProjectDetailsComponent,
-    UsersComponent
+    UsersComponent,
+    ProjectCreateComponent
   ],
   imports: [
     BrowserModule,

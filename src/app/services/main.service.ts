@@ -17,7 +17,16 @@ export class MainService {
   getProjectsById(id:any): Observable<any> {
     return this.http.get(this.baseUrl + 'projects/'+id);
   }
+  postProjects(body:any): Observable<any> {
+    return this.http.post(this.baseUrl + 'projects',body);
+  }
   getUsers(): Observable<any> {
     return this.http.get(this.baseUrl + 'users');
+  }
+  getUsersRole(): Observable<any> {
+    return this.http.get(this.baseUrl + 'users-role');
+  }
+  getDepartments(): Observable<any> {
+    return this.http.get(this.baseUrl + 'departments');
   }
 }
