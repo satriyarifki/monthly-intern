@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { MainService } from 'src/app/services/main.service';
+import { ProjectDetailsCreateComponent } from './project-details-create/project-details-create.component';
 
 @Component({
   selector: 'app-project-details',
@@ -9,7 +10,10 @@ import { MainService } from 'src/app/services/main.service';
   styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent {
+  @ViewChild(ProjectDetailsCreateComponent) createComp!: ProjectDetailsCreateComponent
   idParams = this.actRoute.snapshot.params['id']
+
+  searchInput:any = ''
 
   // API
   projectApi:any
