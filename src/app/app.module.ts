@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UsersComponent } from './pages/users/users.component';
 import { ProjectCreateComponent } from './pages/projects/project-create/project-create.component';
+import { ProjectEditComponent } from './pages/projects/project-edit/project-edit.component';
+import { DeleteApiComponent } from './layouts/delete-api/delete-api.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProjectCreateComponent } from './pages/projects/project-create/project-
     ProjectsComponent,
     ProjectDetailsComponent,
     UsersComponent,
-    ProjectCreateComponent
+    ProjectCreateComponent,
+    ProjectEditComponent,
+    DeleteApiComponent
   ],
   imports: [
     BrowserModule,

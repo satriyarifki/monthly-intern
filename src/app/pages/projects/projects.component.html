@@ -1,7 +1,10 @@
 <div class="lg:ml-64 px-5 py-10 space-y-4 dark:text-white">
   <div class="flex justify-between">
     <h1 class="font-semibold text-2xl">Project List</h1>
-    <button (click)="createComp.changeShow(true)" class="hover:text-gray-800 dark:hover:text-gray-300 transition-all">
+    <button
+      (click)="createComp.changeShow(true)"
+      class="hover:text-gray-800 dark:hover:text-gray-300 transition-all"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="32px"
@@ -35,9 +38,8 @@
         class="divide-y dark:bg-slate-700 dark:text-white divide-gray-100 border-t border-gray-100 dark:border-gray-600 dark:divide-gray-600"
       >
         <tr
-          [routerLink]="['details/' + item.id]"
           *ngFor="let item of projectsApi"
-          class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+          class="hover:bg-gray-50 dark:hover:bg-gray-700"
         >
           <th class="px-6 py-4 font-medium">
             {{ item.users_role.nik }}
@@ -52,7 +54,24 @@
             </span>
           </td>
           <td class="flex justify-center gap-4 px-6 py-4 font-medium">
-            <a href="">Delete</a><a href="" class="text-primary-700">Edit</a>
+            <button
+              (click)="toDetails(item.id)"
+              class="p-1.5 hover:bg-indigo-100 dark:hover:bg-indigo-900 rounded-md"
+            >
+              Details
+            </button>
+            <button
+              (click)="editComp?.changeShow(true, item)"
+              class="p-1.5 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-md"
+            >
+              Edit
+            </button>
+            <button
+              (click)="deleteRow(item)"
+              class="p-1.5 hover:bg-red-100 dark:hover:bg-red-900 rounded-md"
+            >
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
@@ -60,4 +79,5 @@
   </div>
 </div>
 
-<app-project-create ></app-project-create>
+<app-project-create></app-project-create>
+<app-project-edit></app-project-edit>

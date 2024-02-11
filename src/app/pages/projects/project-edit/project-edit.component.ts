@@ -5,18 +5,20 @@ import { forkJoin } from 'rxjs';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
-  selector: 'app-project-create',
-  templateUrl: './project-create.component.html',
-  styleUrls: ['./project-create.component.css'],
+  selector: 'app-project-edit',
+  templateUrl: './project-edit.component.html',
+  styleUrls: ['./project-edit.component.css'],
 })
-export class ProjectCreateComponent {
+export class ProjectEditComponent {
   @Input() show: boolean = false;
 
   //APi
   deptsApi: any[] = [];
   usersApi: any[] = [];
+  projectApi: any;
 
   form = this.formBuilder.group({
+    id: 0,
     departmentId: 0,
     usersRoleId: 0,
     appName: '',
@@ -39,15 +41,24 @@ export class ProjectCreateComponent {
 
   onSubmit() {
     console.log(this.form.value);
-    this.mainService.postProjects(this.form.value).subscribe((res) => {
+    this.mainService.putProjects(this.form.value).subscribe((res) => {
       console.log(res);
-      this.changeShow(false);
+      this.changeShow(false, null);
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl(this.router.url);
     });
   }
 
-  changeShow(show: boolean) {
+  changeShow(show: boolean, item: any) {
+    if (show) {
+      this.form.controls['id'].setValue(item.id);
+      this.form.controls['departmentId'].setValue(item.departmentId);
+      this.form.controls['usersRoleId'].setValue(item.usersRoleId);
+      this.form.controls['appName'].setValue(item.appName);
+      this.form.controls['progress'].setValue(item.progress);
+    } else {
+      this.form.reset();
+    }
     this.show = show;
   }
 }

@@ -11,12 +11,17 @@ import { MainService } from 'src/app/services/main.service';
 export class SidebarComponent {
   @Input() darkMode!: Boolean ;
   @Output() setDarkMode = new EventEmitter<Boolean>();
+  userData: any
 
   constructor(
     private mainService: MainService,
     private authService: AuthService,
     public router: Router
-  ) {}
+  ) {
+    this.userData = authService.getUser()
+    console.log(this.userData);
+
+  }
   toggleTheme() {
     this.darkMode = !this.darkMode;
     if (this.darkMode) {

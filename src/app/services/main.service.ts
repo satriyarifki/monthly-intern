@@ -20,6 +20,12 @@ export class MainService {
   postProjects(body:any): Observable<any> {
     return this.http.post(this.baseUrl + 'projects',body);
   }
+  putProjects(body:any): Observable<any> {
+    return this.http.put(this.baseUrl + 'projects',body);
+  }
+  deleteProject(id:any): Observable<any> {
+    return this.http.delete(this.baseUrl + 'projects/'+id);
+  }
   getUsers(): Observable<any> {
     return this.http.get(this.baseUrl + 'users');
   }
