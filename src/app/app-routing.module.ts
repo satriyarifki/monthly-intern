@@ -6,6 +6,8 @@ import { onAuthGuard } from './services/guard/on-auth.guard';
 import { outAuthGuard } from './services/guard/out-auth.guard';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 import { UsersComponent } from './pages/users/users.component';
+import { isAdminGuard } from './services/guard/is-admin.guard';
+import { NotFoundComponent } from './layouts/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: ProjectsComponent, canActivate: [onAuthGuard] },
@@ -18,7 +20,11 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
-    canActivate: [onAuthGuard],
+    canActivate: [onAuthGuard,isAdminGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

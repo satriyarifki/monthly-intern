@@ -4,6 +4,7 @@ import { AlertType } from 'src/app/services/alert/alert.model';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { zoomInOutVar } from 'src/app/styling/animations';
 
+
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',

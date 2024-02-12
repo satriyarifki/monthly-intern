@@ -6,6 +6,7 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { Router } from '@angular/router';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-projects',
@@ -22,16 +23,22 @@ export class ProjectsComponent {
     private mainService: MainService,
     private router: Router,
     private deleteService: DeleteApiService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private authService:AuthService
   ) {
     // console.log(this.createComp);
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+    
+    
     spinnerService.onCallSpinner(true);
     forkJoin(mainService.getProjects()).subscribe(
       (res) => {
         this.projectsApi = res[0];
+        if (authService.getUser().roleId != 1) {
+          this.projectsApi = this.projectsApi.filter(data=>data.users_role.nik.includes(authService.getUser().lg_nik))
+        }
         spinnerService.onCallSpinner(false);
       },
       (err) => {

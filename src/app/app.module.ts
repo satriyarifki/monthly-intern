@@ -21,6 +21,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerComponent } from './layouts/spinner/spinner.component';
 import { CustomFilterPipe } from './pipe/custom-filter.pipe';
 import { AlertComponent } from './layouts/alert/alert.component';
+import { NotFoundComponent } from './layouts/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AlertComponent } from './layouts/alert/alert.component';
     SpinnerComponent,
     CustomFilterPipe,
     AlertComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

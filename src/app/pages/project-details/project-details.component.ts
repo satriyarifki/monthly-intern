@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
 import { MainService } from 'src/app/services/main.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
@@ -10,39 +11,58 @@ import { ProjectDetailsEditComponent } from './project-details-edit/project-deta
 @Component({
   selector: 'app-project-details',
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css']
+  styleUrls: ['./project-details.component.css'],
 })
 export class ProjectDetailsComponent {
-  @ViewChild(ProjectDetailsCreateComponent) createComp!: ProjectDetailsCreateComponent
-  @ViewChild(ProjectDetailsEditComponent) editComp!: ProjectDetailsEditComponent
-  idParams = this.actRoute.snapshot.params['id']
+  @ViewChild(ProjectDetailsCreateComponent)
+  createComp!: ProjectDetailsCreateComponent;
+  @ViewChild(ProjectDetailsEditComponent)
+  editComp!: ProjectDetailsEditComponent;
+  idParams = this.actRoute.snapshot.params['id'];
 
-  searchInput:any = ''
+  searchInput: any = '';
 
   // API
-  projectApi:any
+  projectApi: any;
 
-  constructor(private mainService: MainService, private actRoute: ActivatedRoute,private router:Router, private deleteService:DeleteApiService, private spinnerService:SpinnerService) {
+  constructor(
+    private mainService: MainService,
+    private actRoute: ActivatedRoute,
+    private router: Router,
+    private deleteService: DeleteApiService,
+    private spinnerService: SpinnerService,
+    private authService: AuthService
+  ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+
     spinnerService.onCallSpinner(true);
-    forkJoin(mainService.getProjectsById(this.idParams)).subscribe(res => {
-      this.projectApi = res[0]
-      console.log(this.projectApi);
-      spinnerService.onCallSpinner(false);
-    }, err =>{
-      console.log(err);
-      spinnerService.onCallSpinner(false);
-    })
+    forkJoin(mainService.getProjectsById(this.idParams)).subscribe(
+      (res) => {
+        this.projectApi = res[0];
+        // console.log(this.projectApi);
+        if (
+          authService.getUser().roleId != 1 &&
+          !this.projectApi.users_role.nik.includes(authService.getUser().lg_nik)
+        ) {
+          router.navigate(['/']);
+        }
+        spinnerService.onCallSpinner(false);
+      },
+      (err) => {
+        console.log(err);
+        spinnerService.onCallSpinner(false);
+      }
+    );
   }
 
   deleteRow(data: any) {
-    const fun = 'this.mainService.deleteProjectDetails(' + JSON.stringify(data.id) + ')';
+    const fun =
+      'this.mainService.deleteProjectDetails(' + JSON.stringify(data.id) + ')';
     this.deleteService.onCallDelete({
-      dataName: '('+data.id + ') ' + data.feature,
+      dataName: '(' + data.id + ') ' + data.feature,
       func: fun,
     });
   }
-  
 }
