@@ -44,9 +44,7 @@ export class ProjectDetailsEditComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
-    this.mainService.postProjectDetails(this.form.value).subscribe((res) => {
-      console.log(res);
+    this.mainService.putProjectDetails(this.form.value).subscribe((res) => {
       this.changeShow(false,null);
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl(this.router.url);

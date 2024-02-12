@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertType } from '../services/alert/alert.model';
+import { AlertService } from '../services/alert/alert.service';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
@@ -21,7 +23,8 @@ export class AuthComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private alertService:AlertService
   ) {}
 
   get f() {
@@ -47,7 +50,7 @@ export class AuthComponent {
           // alert('Sign In Success')
           this.router.navigate(['/']);
           
-          // this.alertService.onCallAlert('Login Successful !', AlertType.Success);
+          this.alertService.onCallAlert('Login Successful !', AlertType.Success);
           //this.reloadPage();
         },
         (err) => {
@@ -56,12 +59,12 @@ export class AuthComponent {
           if (err.statusText == 'Unauthorized') {
             console.log('NIK or Pass Invalid');
             
-            // this.alertService.onCallAlert(
-            //   'NIK or Password Invalid',
-            //   AlertType.Error
-            // );
+            this.alertService.onCallAlert(
+              'NIK or Password Invalid',
+              AlertType.Error
+            );
           } else {
-            // this.alertService.onCallAlert('Login Failed', AlertType.Error);
+            this.alertService.onCallAlert('Login Failed', AlertType.Error);
             console.log('Sign In Failed');
           }
 

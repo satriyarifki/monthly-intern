@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { AlertType } from '../alert/alert.model';
+import { AlertService } from '../alert/alert.service';
 const baseApi = environment.baseApi
 
 const httpOptions = {
@@ -19,7 +21,7 @@ const USER_DATA_KEY = 'auth-user-data';
 export class AuthService {
   datas: any;
   private authUrl = baseApi + 'users/';
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private alertService:AlertService) {}
   setCookie(cValue: string, expDays: number) {
     let date = new Date();
     date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
@@ -55,6 +57,7 @@ export class AuthService {
     window.localStorage.clear();
     this.deleteCookie();
     // window.location.reload();
+    this.alertService.onCallAlert('Sign Out Success!', AlertType.Success)
     this.router.navigate(['/']);
   }
 

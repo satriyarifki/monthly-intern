@@ -1,9 +1,11 @@
 <div [ngClass]="{ 'dark bg-sky-900': darkMode }" class="h-screen">
+  <app-spinner></app-spinner>
+  <app-delete-api></app-delete-api>
+  <app-alert></app-alert>
   <app-sidebar
     *ngIf="!router.url.includes('login')"
     [darkMode]="darkMode"
     (setDarkMode)="setDarkMode($event)"
   ></app-sidebar>
-  <app-delete-api></app-delete-api>
   <router-outlet></router-outlet>
 </div>

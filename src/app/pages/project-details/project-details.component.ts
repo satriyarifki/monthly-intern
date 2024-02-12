@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
 import { MainService } from 'src/app/services/main.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import { ProjectDetailsCreateComponent } from './project-details-create/project-details-create.component';
 import { ProjectDetailsEditComponent } from './project-details-edit/project-details-edit.component';
 
@@ -21,13 +22,18 @@ export class ProjectDetailsComponent {
   // API
   projectApi:any
 
-  constructor(private mainService: MainService, private actRoute: ActivatedRoute,private router:Router, private deleteService:DeleteApiService) {
+  constructor(private mainService: MainService, private actRoute: ActivatedRoute,private router:Router, private deleteService:DeleteApiService, private spinnerService:SpinnerService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+    spinnerService.onCallSpinner(true);
     forkJoin(mainService.getProjectsById(this.idParams)).subscribe(res => {
       this.projectApi = res[0]
       console.log(this.projectApi);
+      spinnerService.onCallSpinner(false);
+    }, err =>{
+      console.log(err);
+      spinnerService.onCallSpinner(false);
     })
   }
 
@@ -38,4 +44,5 @@ export class ProjectDetailsComponent {
       func: fun,
     });
   }
+  
 }

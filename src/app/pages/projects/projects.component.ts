@@ -5,36 +5,47 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { Router } from '@angular/router';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
 })
 export class ProjectsComponent {
-  @ViewChild(ProjectCreateComponent) createComp!: ProjectCreateComponent
-  @ViewChild(ProjectEditComponent) editComp!: ProjectEditComponent
+  @ViewChild(ProjectCreateComponent) createComp!: ProjectCreateComponent;
+  @ViewChild(ProjectEditComponent) editComp!: ProjectEditComponent;
 
-  projectsApi: any[] = []
+  projectsApi: any[] = [];
 
-
-  constructor(private mainService: MainService, private router:Router, private deleteService:DeleteApiService) {
+  constructor(
+    private mainService: MainService,
+    private router: Router,
+    private deleteService: DeleteApiService,
+    private spinnerService: SpinnerService
+  ) {
     // console.log(this.createComp);
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-
-    forkJoin(mainService.getProjects()).subscribe(res=>{
-      this.projectsApi = res[0]
-
-    })
+    spinnerService.onCallSpinner(true);
+    forkJoin(mainService.getProjects()).subscribe(
+      (res) => {
+        this.projectsApi = res[0];
+        spinnerService.onCallSpinner(false);
+      },
+      (err) => {
+        spinnerService.onCallSpinner(false);
+      }
+    );
   }
 
   toDetails(id: any) {
-    this.router.navigate(['details/'+id])
+    this.router.navigate(['details/' + id]);
   }
   deleteRow(data: any) {
-    const fun = 'this.mainService.deleteProject(' + JSON.stringify(data.id) + ')';
+    const fun =
+      'this.mainService.deleteProject(' + JSON.stringify(data.id) + ')';
     this.deleteService.onCallDelete({
       dataName: '' + data.appName,
       func: fun,
