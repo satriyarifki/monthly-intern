@@ -11,6 +11,8 @@ export class MainService {
   private baseUrl = baseApi;
 
   constructor(private http: HttpClient) {}
+
+  // Project
   getProjects(): Observable<any> {
     return this.http.get(this.baseUrl + 'projects');
   }
@@ -26,12 +28,30 @@ export class MainService {
   deleteProject(id:any): Observable<any> {
     return this.http.delete(this.baseUrl + 'projects/'+id);
   }
+
+  // Project Details
+  getProjectDetails(): Observable<any> {
+    return this.http.get(this.baseUrl + 'project-details');
+  }
+  postProjectDetails(body:any): Observable<any> {
+    return this.http.post(this.baseUrl + 'project-details',body);
+  }
+  putProjectDetails(body:any): Observable<any> {
+    return this.http.put(this.baseUrl + 'project-details',body);
+  }
+  deleteProjectDetails(id:any): Observable<any> {
+    return this.http.delete(this.baseUrl + 'project-details/'+id);
+  }
+
+  // Users
   getUsers(): Observable<any> {
     return this.http.get(this.baseUrl + 'users');
   }
   getUsersRole(): Observable<any> {
     return this.http.get(this.baseUrl + 'users-role');
   }
+
+  // Departments
   getDepartments(): Observable<any> {
     return this.http.get(this.baseUrl + 'departments');
   }

@@ -16,6 +16,7 @@ import { ProjectCreateComponent } from './pages/projects/project-create/project-
 import { ProjectEditComponent } from './pages/projects/project-edit/project-edit.component';
 import { DeleteApiComponent } from './layouts/delete-api/delete-api.component';
 import { ProjectDetailsCreateComponent } from './pages/project-details/project-details-create/project-details-create.component';
+import { ProjectDetailsEditComponent } from './pages/project-details/project-details-edit/project-details-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProjectDetailsCreateComponent } from './pages/project-details/project-d
     ProjectCreateComponent,
     ProjectEditComponent,
     DeleteApiComponent,
-    ProjectDetailsCreateComponent
+    ProjectDetailsCreateComponent,
+    ProjectDetailsEditComponent
   ],
   imports: [
     BrowserModule,

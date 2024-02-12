@@ -19,7 +19,7 @@ export class SidebarComponent {
     public router: Router
   ) {
     this.userData = authService.getUser()
-    console.log(this.userData);
+    // console.log(this.userData);
 
   }
   toggleTheme() {

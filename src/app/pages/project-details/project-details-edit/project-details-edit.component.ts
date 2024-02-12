@@ -7,11 +7,11 @@ import { MainService } from 'src/app/services/main.service';
 const statusEnum = ['Undone', 'Ongoing', 'Done']
 
 @Component({
-  selector: 'app-project-details-create',
-  templateUrl: './project-details-create.component.html',
-  styleUrls: ['./project-details-create.component.css'],
+  selector: 'app-project-details-edit',
+  templateUrl: './project-details-edit.component.html',
+  styleUrls: ['./project-details-edit.component.css']
 })
-export class ProjectDetailsCreateComponent {
+export class ProjectDetailsEditComponent {
   @Input() show: boolean = false;
 
   statusEnum:any[] = statusEnum
@@ -21,6 +21,7 @@ export class ProjectDetailsCreateComponent {
   usersApi: any[] = [];
 
   form = this.formBuilder.group({
+    id: 0,
     projectId: 0,
     feature: '',
     update: '',
@@ -52,9 +53,15 @@ export class ProjectDetailsCreateComponent {
     });
   }
 
-  changeShow(show: boolean, id: any) {
+  changeShow(show: boolean, item: any) {
     if (show) {
-      this.form.controls['projectId'].setValue(id)
+      console.log(item);
+      this.form.controls['id'].setValue(item.id)
+      this.form.controls['projectId'].setValue(item.projectId)
+      this.form.controls['feature'].setValue(item.feature)
+      this.form.controls['update'].setValue(item.update)
+      this.form.controls['status'].setValue(item.status)
+      this.form.controls['doc'].setValue(item.doc)
     } else {
       this.form.reset
     }

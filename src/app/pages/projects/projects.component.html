@@ -56,19 +56,19 @@
           <td class="flex justify-center gap-4 px-6 py-4 font-medium">
             <button
               (click)="toDetails(item.id)"
-              class="p-1.5 hover:bg-indigo-100 dark:hover:bg-indigo-900 rounded-md"
+              class="p-1.5 border hover:bg-indigo-100 dark:hover:bg-indigo-900 rounded-md"
             >
               Details
             </button>
             <button
-              (click)="editComp?.changeShow(true, item)"
-              class="p-1.5 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-md"
+              (click)="editComp.changeShow(true, item)"
+              class="p-1.5 border hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-md"
             >
               Edit
             </button>
             <button
               (click)="deleteRow(item)"
-              class="p-1.5 hover:bg-red-100 dark:hover:bg-red-900 rounded-md"
+              class="p-1.5 border hover:bg-red-100 dark:hover:bg-red-900 rounded-md"
             >
               Delete
             </button>
