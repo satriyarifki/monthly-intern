@@ -41,10 +41,13 @@ export class ProjectDetailsComponent {
     forkJoin(mainService.getProjectsById(this.idParams)).subscribe(
       (res) => {
         this.projectApi = res[0];
-        // console.log(this.projectApi);
+        if (!this.projectApi) {
+          
+          router.navigate(['/']);
+        }
         if (
           authService.getUser().roleId != 1 &&
-          !this.projectApi.users_role.nik.includes(authService.getUser().lg_nik)
+          !this.projectApi?.users_role.nik.includes(authService.getUser().lg_nik)
         ) {
           router.navigate(['/']);
         }

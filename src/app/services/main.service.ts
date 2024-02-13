@@ -50,6 +50,15 @@ export class MainService {
   getUsersRole(): Observable<any> {
     return this.http.get(this.baseUrl + 'users-role');
   }
+  postUsersRole(body:any): Observable<any> {
+    return this.http.post(this.baseUrl + 'users-role',body);
+  }
+  deleteUsersRole(id:any): Observable<any> {
+    return this.http.delete(this.baseUrl + 'users-role/'+id);
+  }
+  getRoles(): Observable<any> {
+    return this.http.get(this.baseUrl + 'roles');
+  }
 
   // Departments
   getDepartments(): Observable<any> {

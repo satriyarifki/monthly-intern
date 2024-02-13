@@ -22,6 +22,8 @@ import { SpinnerComponent } from './layouts/spinner/spinner.component';
 import { CustomFilterPipe } from './pipe/custom-filter.pipe';
 import { AlertComponent } from './layouts/alert/alert.component';
 import { NotFoundComponent } from './layouts/not-found/not-found.component';
+import { CreateUsersAioComponent } from './pages/users/create-users-aio/create-users-aio.component';
+import { CreateUsersNewComponent } from './pages/users/create-users-new/create-users-new.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { NotFoundComponent } from './layouts/not-found/not-found.component';
     CustomFilterPipe,
     AlertComponent,
     NotFoundComponent,
+    CreateUsersAioComponent,
+    CreateUsersNewComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,10 @@
 <div
   [ngClass]="show ? '' : 'hidden'"
-  class="w-full h-full fixed top-0 start-0 z-[40] bg-black bg-opacity-50  [--overlay-backdrop:static]"
+  class="w-full h-full fixed top-0 start-0 z-[40] flex justify-center items-center bg-black bg-opacity-50  [--overlay-backdrop:static]"
 >
-  <div
-    class="h-full flex items-start mt-5 opacity-100 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto"
-  >
+  
     <div
-      class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]"
+      class="w-3/4 md:w-1/3 flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]"
     >
       <div
         class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700"
@@ -51,15 +49,15 @@
             <input
               type="text"
               formControlName="appName"
-              class="py-3 px-4 block w-[50vw] outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-              placeholder="Project Name"
+              class="py-3 px-4 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
+              placeholder=""
             />
           </div>
           <div>
             <label for="" class="text-gray-800 dark:text-white">User</label>
             <select
             formControlName="usersRoleId"
-              class="py-3 px-4 pe-9 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+              class="py-3 px-4 pe-9 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
             >
               <!-- <option selected>Open this select User</option> -->
               <option *ngFor="let item of usersApi" [value]="item.id">{{ item.nik }}</option>
@@ -72,7 +70,7 @@
             >
             <select
             formControlName="departmentId"
-              class="py-3 px-4 pe-9 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+              class="py-3 px-4 pe-9 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
             >
               <!-- <option selected>Open this select Department</option> -->
               <option *ngFor="let item of deptsApi" [value]="item.id">{{ item.department_name }}</option>
@@ -85,7 +83,7 @@
             <input
               type="number"
               formControlName="progress"
-              class="py-3 px-4 block w-[50vw] outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+              class="py-3 px-4 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
               placeholder="0"
             />
           </div>
@@ -111,5 +109,5 @@
         </button>
       </div>
     </div>
-  </div>
+  
 </div>

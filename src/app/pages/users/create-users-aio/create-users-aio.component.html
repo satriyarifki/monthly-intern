@@ -1,8 +1,8 @@
 <div
   [ngClass]="show ? '' : 'hidden'"
-  class="w-full h-full fixed top-0 start-0 z-[40] flex justify-center items-center bg-black bg-opacity-50 [--overlay-backdrop:static]"
+  class="w-full h-full fixed top-0 start-0 z-[40] flex justify-center items-center bg-black bg-opacity-50  [--overlay-backdrop:static]"
 >
-
+  
     <div
       class="w-3/4 md:w-1/3 flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]"
     >
@@ -10,10 +10,10 @@
         class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700"
       >
         <h3 class="font-bold text-lg text-gray-800 dark:text-white">
-          Edit Project
+          Create AIO User
         </h3>
         <button
-          (click)="changeShow(false, null)"
+          (click)="changeShow(false)"
           type="button"
           class="flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
           data-hs-overlay="#hs-static-backdrop-modal"
@@ -37,62 +37,35 @@
         </button>
       </div>
       <div class="p-4 overflow-y-auto">
-        <!-- <p class="mt-1 text-gray-800 dark:text-gray-300">
+        <!-- <p class="mt-1 text-gray-800 dark:text-gray-400">
           This is a wider card with supporting text below as a natural lead-in
           to additional content.
         </p> -->
-        <form
-          [formGroup]="form"
-          (submit)="onSubmit()"
-          class="space-y-2 min-w-full"
-        >
+        <form [formGroup]="form" (submit)="onSubmit()" class="space-y-2 min-w-full">
           <div>
             <label for="" class="text-gray-800 dark:text-white"
-              >Project Name</label
+              >NIK</label
             >
             <input
               type="text"
-              formControlName="appName"
+              formControlName="nik"
               class="py-3 px-4 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
               placeholder=""
             />
           </div>
           <div>
-            <label for="" class="text-gray-800 dark:text-white">User</label>
-            <select
-              formControlName="usersRoleId"
-              class="py-3 px-4 pe-9 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
-            >
-              <!-- <option selected>Open this select User</option> -->
-              <option *ngFor="let item of usersApi" [value]="item.id">
-                {{ item.nik }}
-              </option>
-              <!-- <option value="2">2</option> -->
-            </select>
-          </div>
-          <div>
             <label for="" class="text-gray-800 dark:text-white"
-              >Department</label
+              >Role</label
             >
             <select
-              formControlName="departmentId"
+            formControlName="roleId"
               class="py-3 px-4 pe-9 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
             >
               <!-- <option selected>Open this select Department</option> -->
-              <option *ngFor="let item of deptsApi" [value]="item.id">
-                {{ item.department_name }}
-              </option>
+              <option *ngFor="let item of deptsApi" [value]="item.id">{{ item.role }}</option>
               <!-- <option value="80">80</option> -->
+
             </select>
-          </div>
-          <div>
-            <label for="" class="text-gray-800 dark:text-white">Progress</label>
-            <input
-              type="number"
-              formControlName="progress"
-              class="py-3 px-4 block w-full outline-none border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-gray-600"
-              placeholder="0"
-            />
           </div>
         </form>
       </div>
@@ -100,7 +73,7 @@
         class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700"
       >
         <button
-          (click)="changeShow(false, null)"
+          (click)="changeShow(false)"
           type="button"
           class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
           data-hs-overlay="#hs-static-backdrop-modal"
@@ -116,4 +89,5 @@
         </button>
       </div>
     </div>
+  
 </div>
