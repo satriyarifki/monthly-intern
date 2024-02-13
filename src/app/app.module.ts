@@ -24,6 +24,7 @@ import { AlertComponent } from './layouts/alert/alert.component';
 import { NotFoundComponent } from './layouts/not-found/not-found.component';
 import { CreateUsersAioComponent } from './pages/users/create-users-aio/create-users-aio.component';
 import { CreateUsersNewComponent } from './pages/users/create-users-new/create-users-new.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CreateUsersNewComponent } from './pages/users/create-users-new/create-u
     FormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PaginationControlsDirective } from 'ngx-pagination';
 
 @Component({
   selector: 'app-projects',
@@ -16,8 +17,16 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class ProjectsComponent {
   @ViewChild(ProjectCreateComponent) createComp!: ProjectCreateComponent;
   @ViewChild(ProjectEditComponent) editComp!: ProjectEditComponent;
+  @ViewChild('p', { static: true }) pa: PaginationControlsDirective | any;
+itemPerPage = 5;
 
-  projectsApi: any[] = [];
+projectsApi: any[] = [];
+config = {
+    id: 'project-details',
+    itemsPerPage: this.itemPerPage,
+    currentPage: 1,
+    totalItems: 0,
+  };
 
   constructor(
     private mainService: MainService,
@@ -58,4 +67,9 @@ export class ProjectsComponent {
       func: fun,
     });
   }
+  changeItemPerPageSelect(value: any) {
+    this.config.itemsPerPage = value;
+    // console.log(this.config.itemsPerPage);
+  }
 }
+

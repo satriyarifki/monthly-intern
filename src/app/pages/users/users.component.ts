@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { PaginationControlsDirective } from 'ngx-pagination';
 import { forkJoin } from 'rxjs';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
 import { MainService } from 'src/app/services/main.service';
@@ -12,10 +13,20 @@ import { CreateUsersAioComponent } from './create-users-aio/create-users-aio.com
 })
 export class UsersComponent {
   @ViewChild(CreateUsersAioComponent) createAioComp!: CreateUsersAioComponent;
+  @ViewChild('p', { static: true }) pa: PaginationControlsDirective | any;
+  
   createDropdown = false;
 
+  itemPerPage = 5
+  
   usersApi: any[] = [];
-
+  
+  config = {
+      id: 'userPaginate',
+      itemsPerPage: this.itemPerPage,
+      currentPage: 1,
+      totalItems: this.usersApi.length,
+    };
   constructor(
     private mainService: MainService,
     private spinnerService: SpinnerService,
@@ -51,5 +62,10 @@ export class UsersComponent {
       this.createDropdown = false
       this.createAioComp.changeShow(true)
     }
+  }
+
+  changeItemPerPageSelect(value: any) {
+    this.config.itemsPerPage = value;
+    // console.log(this.config.itemsPerPage);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaginationControlsDirective } from 'ngx-pagination';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service';
@@ -18,12 +19,21 @@ export class ProjectDetailsComponent {
   createComp!: ProjectDetailsCreateComponent;
   @ViewChild(ProjectDetailsEditComponent)
   editComp!: ProjectDetailsEditComponent;
+  @ViewChild('p', { static: true }) pa: PaginationControlsDirective | any;
   idParams = this.actRoute.snapshot.params['id'];
 
   searchInput: any = '';
+  itemPerPage = 5;
 
   // API
   projectApi: any;
+
+  config = {
+    id: 'project-details',
+    itemsPerPage: this.itemPerPage,
+    currentPage: 1,
+    totalItems: 0,
+  };
 
   constructor(
     private mainService: MainService,
@@ -42,12 +52,16 @@ export class ProjectDetailsComponent {
       (res) => {
         this.projectApi = res[0];
         if (!this.projectApi) {
-          
           router.navigate(['/']);
         }
+        this.config.totalItems = this.projectApi.project_details.length
+        console.log(this.config);
+        
         if (
           authService.getUser().roleId != 1 &&
-          !this.projectApi?.users_role.nik.includes(authService.getUser().lg_nik)
+          !this.projectApi?.users_role.nik.includes(
+            authService.getUser().lg_nik
+          )
         ) {
           router.navigate(['/']);
         }
@@ -67,5 +81,10 @@ export class ProjectDetailsComponent {
       dataName: '(' + data.id + ') ' + data.feature,
       func: fun,
     });
+  }
+
+  changeItemPerPageSelect(value: any) {
+    this.config.itemsPerPage = value;
+    // console.log(this.config.itemsPerPage);
   }
 }
