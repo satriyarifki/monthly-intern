@@ -5,6 +5,7 @@ import { DeleteApiService } from 'src/app/services/delete-api/delete-api.service
 import { MainService } from 'src/app/services/main.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import { CreateUsersAioComponent } from './create-users-aio/create-users-aio.component';
+import { CreateUsersNewComponent } from './create-users-new/create-users-new.component';
 
 @Component({
   selector: 'app-users',
@@ -13,14 +14,15 @@ import { CreateUsersAioComponent } from './create-users-aio/create-users-aio.com
 })
 export class UsersComponent {
   @ViewChild(CreateUsersAioComponent) createAioComp!: CreateUsersAioComponent;
+  @ViewChild(CreateUsersNewComponent) createNewComp!: CreateUsersNewComponent;
   @ViewChild('p', { static: true }) pa: PaginationControlsDirective | any;
-  
+
   createDropdown = false;
 
   itemPerPage = 5
-  
+
   usersApi: any[] = [];
-  
+
   config = {
       id: 'userPaginate',
       itemsPerPage: this.itemPerPage,
@@ -56,11 +58,14 @@ export class UsersComponent {
       func: fun,
     });
   }
-  
+
   showCreateModal(aio:boolean){
     if (aio) {
       this.createDropdown = false
       this.createAioComp.changeShow(true)
+    } else {
+      this.createDropdown = false,
+        this.createNewComp.changeShow(true)
     }
   }
 

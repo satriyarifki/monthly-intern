@@ -112,7 +112,8 @@
           </svg>
         </button>
       </div>
-      <div class="overflow-y-auto h-[45vh]">
+      <!-- {{ projectApi.length }} -->
+      <div [ngClass]="projectApi.project_details.length > 4 ? 'h-[45vh] overflow-y-auto' : ''" class=" ">
         <table
           class="w-full border-collapse bg-white text-sm text-gray-500 text-center"
         >

@@ -53,6 +53,9 @@ export class MainService {
   postUsersRole(body:any): Observable<any> {
     return this.http.post(this.baseUrl + 'users-role',body);
   }
+  postNewUser(body:any): Observable<any> {
+    return this.http.post(this.baseUrl + 'users',body);
+  }
   deleteUsersRole(id:any): Observable<any> {
     return this.http.delete(this.baseUrl + 'users-role/'+id);
   }
